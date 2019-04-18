@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import math
 
 
-df = pd.read_excel("fundamentalshifts3.xlsx")
+df = pd.read_excel("fundamentalshifts4.xlsx")
 
 dfs = df.replace(np.nan, True, regex=True)
 # group by just gives an object... is not printable * neither by iloc
@@ -73,8 +73,15 @@ def fundamental_GVD_centered(day):
     
     #out_central =dfs[GVD0 & same_day & ROM_criteria][['central']]
     out_put_all = dfs[same_day & ROM_criteria & criteria_centered][["Nmax",'central','GVD in fs^2','z um', 'EL on target']]
-    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    print('xxxxxxxxxxxxxxxxxxxxall centered, with N>22, for different GVDSxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     print(out_put_all)
+
+
+    fundmanental_Not_800nm = dfs["central"] >= 808
+    correlation_GVD_fundamental_shift =dfs[fundmanental_Not_800nm & criteria_centered][["Nmax",'central','GVD in fs^2','z um', 'EL on target', "day"]]
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxx all with redshifted fundamental 808nm xxxxxxxxxxxx")
+    print(correlation_GVD_fundamental_shift)
+
     #mean_value= out_central.mean()
     #mean_NROM = out_Nmax.mean()
 
